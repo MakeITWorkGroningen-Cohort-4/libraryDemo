@@ -1,6 +1,7 @@
 package nl.miwgroningen.cohort4.vincent.libraryDemo.controller;
 
 import nl.miwgroningen.cohort4.vincent.libraryDemo.model.Book;
+import nl.miwgroningen.cohort4.vincent.libraryDemo.repository.AuthorRepository;
 import nl.miwgroningen.cohort4.vincent.libraryDemo.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,9 @@ public class BookController {
     @Autowired
     BookRepository bookRepository;
 
+    @Autowired
+    AuthorRepository authorRepository;
+
     @GetMapping({"/", "/books"})
     protected String showBooks(Model model) {
         model.addAttribute("allBooks", bookRepository.findAll());
@@ -31,6 +35,7 @@ public class BookController {
     @GetMapping("/books/add")
     protected String showBookForm(Model model) {
         model.addAttribute("book", new Book());
+        model.addAttribute("allAuthors", authorRepository.findAll());
         return "bookForm";
     }
 

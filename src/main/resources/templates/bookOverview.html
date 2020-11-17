@@ -18,12 +18,14 @@
         <tr th:each="book: ${allBooks}">
             <td th:text="${book.bookId}" />
             <td th:text="${book.title}" />
-            <td></td>
+            <td th:text="${book.author.name}" />
             <td></td>
             <td></td>
         </tr>
     </table>
 
     <a th:href="@{/books/add}">Add book</a>
+
+    <a th:href="@{/authors}">Author overview</a>
 </body>
 </html>
