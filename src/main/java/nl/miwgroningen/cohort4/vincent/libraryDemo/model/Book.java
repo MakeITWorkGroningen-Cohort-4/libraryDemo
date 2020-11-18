@@ -4,6 +4,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * @author Vincent Velthuizen <v.r.velthuizen@pl.hanze.nl>
@@ -23,6 +24,13 @@ public class Book {
     @JoinColumn(name = "authorId", referencedColumnName = "authorId", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Author author;
+
+    @OneToMany(mappedBy = "book")
+    private List<Copy> copies;
+
+    public int getNoCopies() {
+        return copies.size();
+    }
 
     public Integer getBookId() {
         return bookId;
