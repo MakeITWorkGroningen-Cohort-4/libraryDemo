@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="/css/library.css" />
-    <title><span th:text="${book.title}" /> details</title>
+    <title th:text="@{${book.title} + ' detail'}">Book details</title>
 </head>
 <body>
     <h1><span th:text="${book.title}" /> details</h1>
