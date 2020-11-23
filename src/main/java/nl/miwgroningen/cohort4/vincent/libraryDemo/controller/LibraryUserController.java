@@ -3,8 +3,10 @@ package nl.miwgroningen.cohort4.vincent.libraryDemo.controller;
 import nl.miwgroningen.cohort4.vincent.libraryDemo.model.LibraryUser;
 import nl.miwgroningen.cohort4.vincent.libraryDemo.repository.LibraryUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,12 +27,14 @@ public class LibraryUserController {
     LibraryUserRepository libraryUserRepository;
 
     @GetMapping("/user/new")
+    @Secured("ROLE_ADMIN")
     protected String showNewUserForm(Model model) {
         model.addAttribute("user", new LibraryUser());
         return "userForm";
     }
 
     @PostMapping("/user/new")
+    @Secured("ROLE_ADMIN")
     protected String saveOrUpdateUser(@ModelAttribute("user") LibraryUser user, BindingResult result) {
         if (result.hasErrors()) {
             return "userForm";

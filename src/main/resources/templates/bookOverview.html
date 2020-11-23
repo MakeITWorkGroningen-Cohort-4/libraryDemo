@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org">
-<html lang="en">
+<html xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org"
+      lang="en">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="/css/library.css" />
@@ -27,11 +28,11 @@
         <a th:href="@{/books/add}">Add book</a>
     </p>
 
-    <p>
+    <p >
         <a th:href="@{/authors}">Author overview</a>
     </p>
 
-    <p>
+    <p sec:authorize="hasRole('ADMIN')">
         <a th:href="@{/user/new}">Add user</a>
     </p>
 
